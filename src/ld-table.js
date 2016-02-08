@@ -37,7 +37,7 @@
                     return prop;
                 };
             },
-            templateUrl: './src/ld-table.html'
+            templateUrl: './ld-table.html'
         };
     }
 
