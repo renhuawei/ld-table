@@ -1,0 +1,19 @@
+{
+  "name": "ld-table",
+  "homepage": "https://github.com/luisenrike/ld-table",
+  "authors": [
+    "Luis Enrique <lepa930322@gmail.com>"
+  ],
+  "description": "angular-smart-table wrapper",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
