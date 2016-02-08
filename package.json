@@ -1,0 +1,21 @@
+{
+  "name": "ld-table",
+  "version": "0.1.0",
+  "description": "angular-smart-table wrapper",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisenrike/ld-table.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisenrike/ld-table/issues"
+  },
+  "homepage": "https://github.com/luisenrike/ld-table#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
