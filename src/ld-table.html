@@ -1,0 +1,42 @@
+<style>
+    .st-sort-ascent:before{
+        content: '\25B2';
+    }
+    .st-sort-descent:before{
+        content: '\25BC';
+    }
+</style>
+
+<table class="table table-striped" st-safe-src="data.rowlist" st-table="displayed">
+    <thead>
+        <tr>
+            <th st-sort="{{o.pred}}" ng-repeat="o in order">
+                {{o.title}}
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        <tr>
+            <th ng-repeat="o in order">
+                <input class="form-control search-input" st-search="{{o.pred}}" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="trow in displayed">
+            <td ng-repeat="o in order">
+                {{parse(trow, o)}}
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="onEditBtnClicked(trow)">Edit</button>
+            </td>
+        </tr>
+    </tbody>	
+    <tfoot>
+        <tr>
+            <td class="text-center" st-pagination="" st-items-by-page="8" st-displayed-pages="7">
+            </td>
+        </tr>
+    </tfoot>
+</table>
