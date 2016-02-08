@@ -16,7 +16,6 @@
 
                 var vm = $scope;
 
-                vm.rowlist = vm.data.rowlist;
                 vm.order = [];
                 vm.parse = parse;
 
