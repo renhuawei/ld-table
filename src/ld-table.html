@@ -7,7 +7,7 @@
     }
 </style>
 
-<table class="table table-striped" st-safe-src="data.rowlist" st-table="displayed">
+<table ng-class="config.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
     <thead>
         <tr>
             <th st-sort="{{o.pred}}" ng-repeat="o in order">
@@ -35,7 +35,7 @@
     </tbody>	
     <tfoot>
         <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="8" st-displayed-pages="7">
+            <td class="text-center" st-pagination="" st-items-by-page="config.itemsPerPage" st-displayed-pages="config.displayedPages">
             </td>
         </tr>
     </tfoot>
