@@ -37,7 +37,6 @@
                     }
                 });
 
-
                 function defineProperties () {
                     for (var property in vm.options) {
                         vm.config[property] = vm.options[property];
