@@ -14,7 +14,7 @@
     }
 </style>
 
-<table ng-class="options.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
+<table ng-class="options.tableClasses || defaultOptions.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
     <thead>
         <tr>
             <th st-sort="{{o.pred}}" ng-repeat="o in order">
@@ -33,7 +33,7 @@
     <tbody>
         <tr ng-repeat="trow in displayed">
             <td ng-repeat="o in order">
-                {{parse(trow, o)}}
+                {{format(trow, o)}}
             </td>
             <td>
                 <button class="btn btn-primary" ng-click="onEditBtnClicked(trow)">Edit</button>
@@ -42,7 +42,11 @@
     </tbody>	
     <tfoot>
         <tr>
-            <td class="text-center" colspan="{{data.cols.length}}" st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages">
+            <td class="text-center"
+                colspan="{{data.cols.length}}"
+                st-pagination=""
+                st-items-by-page="options.itemsByPage || defaultOptions.itemsByPage"
+                st-displayed-pages="options.displayedPages || defaultOptions.displayedPages">
             </td>
         </tr>
     </tfoot>

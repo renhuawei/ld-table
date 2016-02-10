@@ -16,17 +16,25 @@
 
                 var vm = $scope;
 
-                var defaultOptions = {
+                vm.defaultOptions = {
                     itemsByPage: 10,
                     displayedPages: 10,
-                    tableClasses: 'table table-striped'
+                    tableClasses: 'table table-striped',
+                    defaultFilter: '', // no filter
+                    filters: {
+                        date: {
+                            format: 'MM/dd/yyyy',
+                            align: 'right'
+                        },
+                        number: {
+                            format: '0'
+                        }
+                    }
                 };
 
                 vm.order = [];
-                vm.parse = parse;
-                vm.options = {};
-
-                defineProperties();
+                vm.format = format;
+                vm.options = vm.data.attrs || {};
 
                 $scope.$watch('data.cols', function (newValue, oldValue) {
                     if (newValue) {
@@ -36,28 +44,26 @@
                     }
                 });
 
-                $scope.$watch('data.attrs', function (newValue, oldValue) {
-                    if (newValue) {
-                        for (var property in newValue) {
-                            vm.options[property] = newValue[property] || vm.options[property];
-                        }
-                    }
-                });
-
-                function defineProperties () {
-                    for (var property in defaultOptions) {
-                        vm.options[property] = defaultOptions[property];
-                    }
+                function format (obj, col) {
+                    var prop = obj[col.pred];
+                    var filter = getFilterForColumn(col);
+                    var formated = filter ? $filter(filter.type)(prop, filter.format) : prop;
+                    return formated;
                 }
 
-                function parse (obj, col) {
-                    var prop = obj[col.pred];
-                    if (col.type) {
-                        var filtered = $filter(col.type)(prop, col.format);
-                        return filtered;
+                function getFilterForColumn (col) {
+                    var filterType = col.type || vm.options.defaultFilter || vm.defaultOptions.defaultFilter;
+                    if (filterType) {
+                        var filter = vm.options.filters ? vm.options.filters[filterType] : vm.defaultOptions.filters[filterType];
+                        var filterFormat = col.format || filter.format;
+                        return {
+                            type: filterType,
+                            format: filterFormat
+                        };
                     }
-                    return prop;
-                };
+                    return null;
+                }
+
             },
             templateUrl: './ld-table.html'
         };
