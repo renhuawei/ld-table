@@ -11,21 +11,20 @@
             scope: {
                 data: '=',
                 onEditBtnClicked: '=',
-                options: '='
             },
             controller: function ($scope, $filter) {
 
                 var vm = $scope;
 
                 var defaultOptions = {
-                    itemsPerPage: 10,
+                    itemsByPage: 10,
                     displayedPages: 10,
                     tableClasses: 'table table-striped'
                 };
 
                 vm.order = [];
                 vm.parse = parse;
-                vm.config = {};
+                vm.options = {};
 
                 defineProperties();
 
@@ -37,12 +36,17 @@
                     }
                 });
 
-                function defineProperties () {
-                    for (var property in vm.options) {
-                        vm.config[property] = vm.options[property];
+                $scope.$watch('data.attrs', function (newValue, oldValue) {
+                    if (newValue) {
+                        for (var property in newValue) {
+                            vm.options[property] = newValue[property] || vm.options[property];
+                        }
                     }
+                });
+
+                function defineProperties () {
                     for (var property in defaultOptions) {
-                        vm.config[property] = vm.config[property] || defaultOptions[property];
+                        vm.options[property] = defaultOptions[property];
                     }
                 }
 
