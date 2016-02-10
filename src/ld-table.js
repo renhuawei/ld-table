@@ -45,7 +45,7 @@
                 });
 
                 function format (obj, col) {
-                    var prop = obj[col.pred];
+                    var prop = obj[col.field];
                     var filter = getFilterForColumn(col);
                     var formated = filter ? $filter(filter.type)(prop, filter.format) : prop;
                     return formated;
