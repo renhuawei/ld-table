@@ -1,13 +1,20 @@
-<style>
+<style scope>
     .st-sort-ascent:before{
         content: '\25B2';
     }
+
     .st-sort-descent:before{
         content: '\25BC';
     }
+
+    table {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 </style>
 
-<table ng-class="config.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
+<table ng-class="options.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
     <thead>
         <tr>
             <th st-sort="{{o.pred}}" ng-repeat="o in order">
@@ -35,7 +42,7 @@
     </tbody>	
     <tfoot>
         <tr>
-            <td class="text-center" colspan="{{data.cols.length}}" st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="config.displayedPages">
+            <td class="text-center" colspan="{{data.cols.length}}" st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages">
             </td>
         </tr>
     </tfoot>
