@@ -55,7 +55,7 @@
                     var filterType = col.type || vm.options.defaultFilter || vm.defaultOptions.defaultFilter;
                     if (filterType) {
                         var filter = vm.options.filters ? vm.options.filters[filterType] : vm.defaultOptions.filters[filterType];
-                        var filterFormat = col.format || filter.format;
+                        var filterFormat = col.format || filter ? filter.format : '';
                         return {
                             type: filterType,
                             format: filterFormat
