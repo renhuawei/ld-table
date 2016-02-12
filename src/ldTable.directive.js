@@ -10,8 +10,7 @@
         return {
             restrict: 'AE',
             scope: {
-                data: '=',
-                onEditBtnClicked: '=',
+                data: '='
             },
             controller: function ($scope, $filter, ldTableService) {
 

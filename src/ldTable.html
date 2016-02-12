@@ -12,6 +12,9 @@
         overflow-x: auto;
         white-space: nowrap;
     }
+    .btn {
+        margin: auto 2px;
+    }
 </style>
 
 <table ng-class="options.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
@@ -36,7 +39,11 @@
                 {{format(trow, o)}}
             </td>
             <td>
-                <button class="btn btn-primary" ng-click="onEditBtnClicked(trow)">Edit</button>
+                <button ng-repeat="button in data.actionButtons"
+                    class="btn" ng-class="'btn-' + button.type"
+                    ng-click="button.onClick(trow)">
+                    {{button.label}}
+                </button>
             </td>
         </tr>
     </tbody>	
