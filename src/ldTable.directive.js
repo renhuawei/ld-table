@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ldTable', ['smart-table'])
+        .module('ldTable')
         .directive('ldTable', ldTable);
 
     function ldTable () {
@@ -65,7 +65,7 @@
                 }
 
             },
-            templateUrl: './ld-table.html'
+            templateUrl: './ldTable.html'
         };
     }
 
