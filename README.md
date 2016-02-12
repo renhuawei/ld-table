@@ -3,21 +3,35 @@
 
 ## Basic usage
 
+**Still working, could have some typos**
+
 In html:
 
 ```html
-<ld-table data="tableData" on-edit-btn-clicked="editElement" />
+<ld-table data="tableData" />
 ```
 or
 
 ```html
-<div ld-table="" data="tableData" on-edit-btn-clicked="editElement"></div>
+<div ld-table="" data="tableData"></div>
 ```
 
 In js:
 
 ```js
 $scope.tableData = {
+    actionsColumn: {
+        buttons: [{
+            label: 'Edit', type: 'primary', icon: 'edit',
+            onClick: function (row) {
+                $scope.message = 'Edit: ' + JSON.stringify(row)
+            }
+        }, {
+            label: 'Delete', icon: 'trash', onClick: function (row) {
+                $scope.message = 'Delete: ' + JSON.stringify(row)
+            }
+        }]
+    },
     attrs: {
         itemsByPage: 1
     },
@@ -34,19 +48,61 @@ $scope.tableData = {
 $scope.editElement = function (row) { });
 ```
 
-## Options
+## Directive data
 
-### data
-
-Type: `Object`
-
-Table data
-
-#### data.attrs
+### actionsColumn
 
 Type: `Object`
 
-##### data.attrs.itemsByPage
+If exists, define the last column options
+
+#### actionsColumn.title
+
+Type: `String`
+
+Default: 'Actions'
+
+Last column caption
+
+#### actionsColumn.buttons
+
+Type: `Array`
+
+Action buttons per item (row)
+
+##### actionsColumn.buttons.label
+
+Type: `String`
+
+Label of the button
+
+##### actionsColumn.buttons.type
+
+Type: `String`
+
+Default: 'default'
+
+Values: 'default', 'primary', 'success', 'info', 'warning', 'danger'
+
+Bootstrap class to apply to the button (btn-{{type}})
+
+##### actionsColumn.buttons.icon
+
+Type: `String`
+
+Font Awesome icon (fa-{{icon}})
+
+##### actionsColumn.buttons.onClick
+
+Type: `Function`
+
+Function to execute when the button is clicked. It's called with the row object being clicked
+
+### attrs
+
+Type: `Object`
+
+#### attrs.itemsByPage
 
 Type: `Number`
 
