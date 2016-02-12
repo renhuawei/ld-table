@@ -17,14 +17,14 @@
     }
 </style>
 
-<table ng-class="options.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
+<table ng-show="data.rowlist" ng-class="options.tableClasses" st-safe-src="data.rowlist" st-table="displayed">
     <thead>
         <tr>
             <th st-sort="{{o.field}}" ng-repeat="o in order">
                 {{o.title || o.field}}
             </th>
-            <th>
-                Actions
+            <th ng-show="data.actionsColumn">
+                {{options.actionsColumn.title}}
             </th>
         </tr>
         <tr>
@@ -38,9 +38,9 @@
             <td ng-repeat="o in order">
                 {{format(trow, o)}}
             </td>
-            <td>
-                <button ng-repeat="button in data.actionButtons"
-                    class="btn" ng-class="'btn-' + button.type"
+            <td ng-show="data.actionsColumn">
+                <button ng-repeat="button in data.actionsColumn.buttons"
+                    class="btn" ng-class="'btn-' + (button.type || 'default')"
                     ng-click="button.onClick(trow)">
                     <span class="fa" ng-class="'fa-' + button.icon" ng-show="button.icon"></span> {{button.label}}
                 </button>

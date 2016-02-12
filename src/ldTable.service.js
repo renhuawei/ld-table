@@ -8,6 +8,9 @@
     function ldTableService () {
 
         var options = {
+            actionsColumn: {
+                title: 'Actions'
+            },
             itemsByPage: 10,
             displayedPages: 10,
             tableClasses: 'table table-striped',
