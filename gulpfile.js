@@ -8,7 +8,8 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('build', function () {
     var jsFiles = [
         'src/ldTable.module.js',
-        'src/ldTable.directive.js'
+        'src/ldTable.directive.js',
+        'src/ldTable.service.js'
     ];
     gulp.src(jsFiles)
         .pipe(concat('ldTable.js'))

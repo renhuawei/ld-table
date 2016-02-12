@@ -6,35 +6,29 @@
         .directive('ldTable', ldTable);
 
     function ldTable () {
+        
         return {
             restrict: 'AE',
             scope: {
                 data: '=',
                 onEditBtnClicked: '=',
             },
-            controller: function ($scope, $filter) {
+            controller: function ($scope, $filter, ldTableService) {
 
                 var vm = $scope;
 
-                vm.defaultOptions = {
-                    itemsByPage: 10,
-                    displayedPages: 10,
-                    tableClasses: 'table table-striped',
-                    defaultFilter: '', // no filter
-                    filters: {
-                        date: {
-                            format: 'MM/dd/yyyy',
-                            align: 'right'
-                        },
-                        number: {
-                            format: '0'
-                        }
-                    }
-                };
-
                 vm.order = [];
                 vm.format = format;
-                vm.options = vm.data.attrs || {};
+
+                vm.customOptions = vm.data.attrs || {}; 
+
+                vm.options = ldTableService.getDefaultOptions();
+
+                $scope.$watch('customOptions', function (newValue, oldValue) {
+                    if (newValue) {
+                        vm.options = angular.extend({}, vm.options, vm.customOptions);
+                    }
+                });
 
                 $scope.$watch('data.cols', function (newValue, oldValue) {
                     if (newValue) {
@@ -52,9 +46,9 @@
                 }
 
                 function getFilterForColumn (col) {
-                    var filterType = col.type || vm.options.defaultFilter || vm.defaultOptions.defaultFilter;
+                    var filterType = col.type || vm.options.defaultFilter;
                     if (filterType) {
-                        var filter = vm.options.filters ? vm.options.filters[filterType] : vm.defaultOptions.filters[filterType];
+                        var filter = vm.options.filters[filterType];
                         var filterFormat = col.format || filter ? filter.format : '';
                         return {
                             type: filterType,
