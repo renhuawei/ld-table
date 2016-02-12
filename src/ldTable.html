@@ -42,7 +42,7 @@
                 <button ng-repeat="button in data.actionButtons"
                     class="btn" ng-class="'btn-' + button.type"
                     ng-click="button.onClick(trow)">
-                    {{button.label}}
+                    <span class="fa" ng-class="'fa-' + button.icon" ng-show="button.icon"></span> {{button.label}}
                 </button>
             </td>
         </tr>
